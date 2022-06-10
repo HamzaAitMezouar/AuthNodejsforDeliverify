@@ -1,11 +1,12 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
+
 const register = (req , res ,next )=> {
     
     const hash = bcrypt.hashSync(req.body.password, 10);
    let user = new User ({
-        name : req.body.name ,
+        displayName : req.body.displayName ,
         email : req.body.email ,
         password : hash  ,
     })
@@ -37,7 +38,7 @@ const signin =(req ,res ,next )=> {
             }
            if(result){
                
-                let token = jwt.sign({name:user.name } ,'verySecretValue' ,{expiresIn  : '1h'})
+                let token = jwt.sign({name:user.displayName } ,'verySecretValue' ,{expiresIn  : '1h'})
                 res.json({
                     message : 'Sign In succesfully ',
                     token :token
@@ -55,4 +56,8 @@ const signin =(req ,res ,next )=> {
         }
     })
 }
-module.exports = {register ,signin}
+
+
+
+
+module.exports = {register ,signin} 

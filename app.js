@@ -22,7 +22,7 @@ app.use(morgan('dev'));
 app.use([bodyParser.urlencoded({ extended: true}) ,bodyParser.json()]);
 
 app.use('/deliverify',userRoute)
-const Port = process.env.port || 4000 ;
+const Port = process.env.PORT || 8080 ;
 app.listen( Port,()=> {
     console.log('Connected To Server '+Port);
 });
